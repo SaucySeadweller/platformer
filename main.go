@@ -5,6 +5,7 @@ import (
 
 	//#include <SDL/SDL_image.h>
 
+	"github.com/veandco/go-sdl2/img"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -36,8 +37,13 @@ func main() {
 		return
 	}
 	defer renderer.Destroy()
-	//	player, err := game.newPlayer(renderer)
-	//img.Init(img.INIT_JPG | img.INIT_PNG)
+
+	plr, err := newPlayer(renderer)
+	if err != nil {
+		fmt.Println("creating player:", err)
+		return
+	}
+	img.Init(img.INIT_JPG | img.INIT_PNG)
 
 	sdl.SetHint(sdl.HINT_RENDER_SCALE_QUALITY, "1")
 
@@ -50,8 +56,7 @@ func main() {
 
 			renderer.Clear()
 			renderer.SetDrawColor(0, 100, 240, 222)
-			//	renderer.Copy(playerTex, &sdl.Rect{X: 0, Y: 0, W: 48, H: 48}, &sdl.Rect{X: 100, Y: 200, W: 48, H: 48})
-			renderer.Present()
+			plr.draw(renderer)
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package game
+package main
 
 import (
 	"fmt"
@@ -29,4 +29,11 @@ func newPlayer(renderer *sdl.Renderer) (p Player, err error) {
 	}
 
 	return
+}
+
+func (p *Player) draw(renderer *sdl.Renderer) {
+	renderer.Copy(p.tex,
+		&sdl.Rect{X: 0, Y: 0, W: 48, H: 48},
+		&sdl.Rect{X: 100, Y: 200, W: 48, H: 48})
+	renderer.Present()
 }
