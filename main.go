@@ -54,9 +54,10 @@ func main() {
 				return
 			}
 
-			renderer.Clear()
-			renderer.SetDrawColor(0, 100, 240, 222)
-			plr.draw(renderer)
 		}
+		renderer.SetDrawColor(0, 100, 240, 222)
+		renderer.Clear()
+		plr.draw(renderer)
+		plr.update()
 	}
 }
